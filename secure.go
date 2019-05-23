@@ -1,7 +1,5 @@
 package secure
 
-import "unsafe"
-
 var dummyString = "********"
 var marsharDummy = "\"" + dummyString + "\""
 
@@ -18,8 +16,4 @@ func (s String) String() string {
 
 func (s String) GoString() string {
 	return dummyString
-}
-
-func (s String) MarshalJSON() ([]byte, error) {
-	return *(*[]byte)(unsafe.Pointer(&marsharDummy)), nil
 }

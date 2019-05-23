@@ -27,13 +27,10 @@ func main() {
 	}
 
 	fmt.Printf("%v\n", user)
-
-	json.NewEncoder(os.Stdout).Encode(user)
 }
 ```
 
 ```
 $ go run example/main.go 
 &{1 ********}
-{"ID":1,"Password":"********"}
 ```
