@@ -8,21 +8,32 @@ Output confidential string to stdout as dummy string.
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"os"
 
 	secure "github.com/ieee0824/secure-string"
 )
 
-func main() {
-	s := secure.String("password")
+type userInfo struct {
+	ID       int
+	Password secure.String
+}
 
-	fmt.Printf("%s\n", s)
-	fmt.Printf("%v\n", s)
+func main() {
+	user := &userInfo{
+		1,
+		"foo",
+	}
+
+	fmt.Printf("%v\n", user)
+
+	json.NewEncoder(os.Stdout).Encode(user)
 }
 ```
 
 ```
 $ go run example/main.go 
-********
-********
+&{1 ********}
+{"ID":1,"Password":"********"}
 ```
